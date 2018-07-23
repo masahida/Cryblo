@@ -17,6 +17,7 @@ gem 'omniauth-facebook'
 gem "paperclip", "~> 6.0.0"
 gem 'dropzonejs-rails'
 gem "figaro", "~> 1.1.1"
+gem 'aws-sdk', '~> 2.3'
 
 group :production do
   gem 'pg'
