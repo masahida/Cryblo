@@ -1,4 +1,4 @@
-class CreateListings < ActiveRecord::Migration[5.2]
+class CreateListings < ActiveRecord::Migration
   def change
     create_table :listings do |t|
       t.string :main_type
@@ -10,9 +10,9 @@ class CreateListings < ActiveRecord::Migration[5.2]
       t.text :listing_content
       t.integer :price_onedayuse
       t.boolean :active
-      t.references :user, foreign_key: true
+      t.references :user, index: true, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

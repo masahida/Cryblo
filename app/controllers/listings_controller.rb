@@ -1,11 +1,13 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_listing, only: [:update, :basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
+  before_action :set_listing, only: [:show, :update, :basics, :description, :address, :price, :photos, :calendar, :bankaccount, :publish]
 
   def index
+    @listings = current_user.listings
   end
 
   def show
+    @photos = @listing.photos
   end
 
   def new
@@ -30,7 +32,7 @@ class ListingsController < ApplicationController
 
   def update
     if @listing.update(listing_params)
-      redirect_to :back, notice: "更新できました"
+      redirect_back fallback_location: root_path
     end
   end
 
@@ -63,7 +65,7 @@ class ListingsController < ApplicationController
 
   private
   def listing_params
-    params.require(:listing).permit(:main_type, :play_type, :use_years, :play_size, :price_onedayuse)
+    params.require(:listing).permit(:main_type, :play_type, :use_years, :play_size, :price_onedayuse, :address, :listing_title, :listing_content, :active)
   end
 
   def set_listing

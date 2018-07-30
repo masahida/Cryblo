@@ -1,13 +1,11 @@
-class AddAttachmentPhotoImageToUsers < ActiveRecord::Migration[5.2]
+class AddAttachmentImageToPhotos < ActiveRecord::Migration
   def self.up
-    change_table :users do |t|
-      t.attachment :photo
+    change_table :photos do |t|
       t.attachment :image
     end
   end
 
   def self.down
-    remove_attachment :users, :photo
-    remove_attachment :users, :image
+    remove_attachment :photos, :image
   end
 end
